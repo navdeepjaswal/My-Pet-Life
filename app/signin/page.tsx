@@ -106,12 +106,6 @@ export default function SignInPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <Link href="/auth/forgot-password" className="text-sm text-rose-500 hover:text-rose-600">
-                    Forgot password?
-                  </Link>
-                </div>
-
                 <Button 
                   type="submit" 
                   className="w-full bg-rose-500 hover:bg-rose-600 text-white rounded-full py-3"
