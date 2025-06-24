@@ -1,51 +1,56 @@
-import { DeployButton } from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
-import { AuthButton } from "@/components/auth-button";
-import { Hero } from "@/components/hero";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { ConnectSupabaseSteps } from "@/components/tutorial/connect-supabase-steps";
-import { SignUpUserSteps } from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/lib/utils";
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import Loader from "@/components/loader";
+import PawDecoration from "@/components/paw-decoration";
+import HeroSection from "@/components/home/hero-section";
+import FeaturesSection from "@/components/home/features-section";
+import AboutPreviewSection from "@/components/home/about-preview-section";
+import TestimonialsSection from "@/components/home/testimonials-section";
+import CTASection from "@/components/home/cta-section";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen flex flex-col items-center">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-            <div className="flex gap-5 items-center font-semibold">
-              <Link href={"/"}>Next.js Supabase Starter</Link>
-              <div className="flex items-center gap-2">
-                <DeployButton />
-              </div>
-            </div>
-            {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
-          </div>
-        </nav>
-        <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
-          <Hero />
-          <main className="flex-1 flex flex-col gap-6 px-4">
-            <h2 className="font-medium text-xl mb-4">Next steps</h2>
-            {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-          </main>
-        </div>
+  const [isLoading, setIsLoading] = useState(true);
 
-        <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Supabase
-            </a>
-          </p>
-          <ThemeSwitcher />
-        </footer>
+  return (
+    <>
+      {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+
+      <div
+        className={`min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 ${
+          isLoading ? "hidden" : "block"
+        }`}
+      >
+        {/* Decorative paws */}
+        <PawDecoration className="absolute top-20 left-10 rotate-12" />
+        <PawDecoration
+          className="absolute top-40 right-20 -rotate-12"
+          size="w-12 h-12"
+        />
+        <PawDecoration
+          className="absolute bottom-40 left-20 rotate-45"
+          size="w-12 h-12"
+        />
+        <PawDecoration
+          className="absolute bottom-20 right-10 -rotate-45"
+          size="w-12 h-12"
+        />
+
+        {/* Hero Section */}
+        <HeroSection />
+
+        {/* Features Section */}
+        <FeaturesSection />
+
+        {/* About Preview Section */}
+        <AboutPreviewSection />
+
+        {/* Testimonials */}
+        <TestimonialsSection />
+
+        {/* CTA Section */}
+        <CTASection />
       </div>
-    </main>
+    </>
   );
 }
