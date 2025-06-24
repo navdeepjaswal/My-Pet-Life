@@ -4,24 +4,45 @@ import type React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { GoogleButton } from "@/components/ui/google-button"
 import Navigation from "@/components/navigation"
 import Loader from "@/components/loader"
 import PawDecoration from "@/components/paw-decoration"
 import { Heart, Mail, Lock } from "lucide-react"
+import { createClient } from "@/lib/supabase/client"
+import { toast } from "sonner"
 
 export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle sign in logic here
-    console.log("Sign in:", { email, password })
+    setIsSubmitting(true)
+    
+    const supabase = createClient()
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      if (error) throw error
+      toast.success("Successfully logged in!")
+      router.push("/dashboard")
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : "An error occurred")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -86,14 +107,29 @@ export default function SignInPage() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Link href="/forgot-password" className="text-sm text-rose-500 hover:text-rose-600">
+                  <Link href="/auth/forgot-password" className="text-sm text-rose-500 hover:text-rose-600">
                     Forgot password?
                   </Link>
                 </div>
 
-                <Button type="submit" className="w-full bg-rose-500 hover:bg-rose-600 text-white rounded-full py-3">
-                  Sign In
+                <Button 
+                  type="submit" 
+                  className="w-full bg-rose-500 hover:bg-rose-600 text-white rounded-full py-3"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Signing In..." : "Sign In"}
                 </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t border-rose-200" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                  </div>
+                </div>
+
+                <GoogleButton />
 
                 <div className="text-center">
                   <p className="text-gray-600">
@@ -107,19 +143,6 @@ export default function SignInPage() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Footer */}
-        <footer className="bg-white/50 backdrop-blur-sm border-t border-rose-100 py-8">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                <Heart className="h-6 w-6 text-rose-500" fill="currentColor" />
-                <span className="text-xl font-bold text-gray-800">MyPetLife</span>
-              </div>
-              <p className="text-gray-600 text-center md:text-right">Made with ❤️ for pet parents everywhere</p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   )

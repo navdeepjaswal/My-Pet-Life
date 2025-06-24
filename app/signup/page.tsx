@@ -4,30 +4,62 @@ import type React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
+import { GoogleButton } from "@/components/ui/google-button"
 import Navigation from "@/components/navigation"
 import Loader from "@/components/loader"
 import PawDecoration from "@/components/paw-decoration"
 import { Heart, Mail, Lock, User } from "lucide-react"
+import { createClient } from "@/lib/supabase/client"
+import { toast } from "sonner"
 
 export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    agreeToTerms: false,
+    confirmPassword: ""
   })
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle sign up logic here
-    console.log("Sign up:", formData)
+    setIsSubmitting(true)
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match")
+      setIsSubmitting(false)
+      return
+    }
+
+    const supabase = createClient()
+
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          data: {
+            full_name: formData.name,
+          },
+        },
+      })
+      if (error) throw error
+      toast.success("Check your email to confirm your account!")
+      router.push("/auth/sign-up-success")
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : "An error occurred")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -131,32 +163,24 @@ export default function SignUpPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="terms"
-                    checked={formData.agreeToTerms}
-                    onCheckedChange={(checked) => handleInputChange("agreeToTerms", checked as boolean)}
-                    className="border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500"
-                  />
-                  <Label htmlFor="terms" className="text-sm text-gray-600">
-                    I agree to the{" "}
-                    <Link href="/terms" className="text-rose-500 hover:text-rose-600">
-                      Terms of Service
-                    </Link>{" "}
-                    and{" "}
-                    <Link href="/privacy" className="text-rose-500 hover:text-rose-600">
-                      Privacy Policy
-                    </Link>
-                  </Label>
-                </div>
-
                 <Button
                   type="submit"
                   className="w-full bg-rose-500 hover:bg-rose-600 text-white rounded-full py-3"
-                  disabled={!formData.agreeToTerms}
+                  disabled={isSubmitting}
                 >
-                  Create Account
+                  {isSubmitting ? "Creating Account..." : "Create Account"}
                 </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t border-rose-200" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                  </div>
+                </div>
+
+                <GoogleButton />
 
                 <div className="text-center">
                   <p className="text-gray-600">
@@ -170,19 +194,6 @@ export default function SignUpPage() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Footer */}
-        <footer className="bg-white/50 backdrop-blur-sm border-t border-rose-100 py-8">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                <Heart className="h-6 w-6 text-rose-500" fill="currentColor" />
-                <span className="text-xl font-bold text-gray-800">MyPetLife</span>
-              </div>
-              <p className="text-gray-600 text-center md:text-right">Made with ❤️ for pet parents everywhere</p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   )
