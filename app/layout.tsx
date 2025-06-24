@@ -4,8 +4,14 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
+import { initEmailJS } from "@/lib/emailjs"
 
 const inter = Inter({ subsets: ["latin"] })
+
+// Initialize EmailJS
+initEmailJS();
 
 export const metadata: Metadata = {
   title: "MyPetLife - Preserve Your Pet's Precious Memories",
@@ -22,9 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Navigation />
-        {children}
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <Navigation />
+          {children}
+          <Footer />
+          <Toaster position="bottom-center" />
+        </ThemeProvider>
       </body>
     </html>
   )

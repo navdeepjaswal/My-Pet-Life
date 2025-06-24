@@ -9,7 +9,7 @@ export default function StorySection() {
           <div className="w-full aspect-square rounded-3xl bg-gradient-to-br from-rose-200 to-pink-200 p-6 shadow-lg">
             <div className="w-full h-full rounded-2xl overflow-hidden bg-white shadow-inner">
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/luna.png"
                 alt="Founder with their beloved pet"
                 width={400}
                 height={400}

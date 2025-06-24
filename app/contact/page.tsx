@@ -4,9 +4,7 @@ import { useState } from "react"
 import Loader from "@/components/loader"
 import PawDecoration from "@/components/paw-decoration"
 import HeroSection from "@/components/contact/hero-section"
-import ContactMethods from "@/components/contact/contact-methods"
 import ContactForm from "@/components/contact/contact-form"
-import FAQSection from "@/components/contact/faq-section"
 import SupportHours from "@/components/contact/support-hours"
 
 export default function ContactPage() {
@@ -27,14 +25,8 @@ export default function ContactPage() {
         {/* Hero Section */}
         <HeroSection />
 
-        {/* Contact Methods */}
-        <ContactMethods />
-
         {/* Contact Form */}
         <ContactForm />
-
-        {/* FAQ Section */}
-        <FAQSection />
 
         {/* Support Hours & Additional Info */}
         <SupportHours />

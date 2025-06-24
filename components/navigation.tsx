@@ -14,7 +14,7 @@ export default function Navigation() {
             <span className="text-2xl font-bold text-gray-800">MyPetLife</span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 font-semibold text-lg">
             <Link href="/" className="text-gray-600 hover:text-rose-500 transition-colors">
               Home
             </Link>
@@ -28,12 +28,12 @@ export default function Navigation() {
 
           <div className="flex items-center space-x-4">
             <Link href="/signin">
-              <Button variant="ghost" className="text-gray-600 hover:text-rose-500">
+              <Button variant="ghost" className="text-gray-600 hover:text-rose-500 font-semibold text-lg">
                 Sign In
               </Button>
             </Link>
             <Link href="/signup">
-              <Button className="bg-rose-500 hover:bg-rose-600 text-white rounded-full px-6">Get Started</Button>
+              <Button className="bg-rose-500 hover:bg-rose-600 text-white rounded-full px-6 font-semibold text-lg">Get Started</Button>
             </Link>
           </div>
         </div>

@@ -13,15 +13,15 @@ export default function SupportHours() {
             <div className="space-y-2 text-gray-600">
               <div className="flex justify-between">
                 <span>Monday - Friday:</span>
-                <span>9:00 AM - 8:00 PM PST</span>
+                <span>9:00 AM - 8:00 PM EST</span>
               </div>
               <div className="flex justify-between">
                 <span>Saturday:</span>
-                <span>10:00 AM - 6:00 PM PST</span>
+                <span>10:00 AM - 6:00 PM EST</span>
               </div>
               <div className="flex justify-between">
                 <span>Sunday:</span>
-                <span>12:00 PM - 5:00 PM PST</span>
+                <span>12:00 PM - 5:00 PM EST</span>
               </div>
               <div className="mt-4 pt-4 border-t border-rose-100">
                 <p className="text-sm">
@@ -39,7 +39,6 @@ export default function SupportHours() {
             <div className="space-y-3 text-gray-600">
               <p>We understand how precious your pet memories are to you.</p>
               <p>Our dedicated support team consists of fellow pet parents who genuinely care about your experience.</p>
-              <p>Average response time: <strong>Under 2 hours</strong> during business hours.</p>
               <p className="text-sm italic">
                 "Every pet parent deserves compassionate support when preserving their most treasured memories."
               </p>
