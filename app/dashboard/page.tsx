@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
@@ -53,8 +52,6 @@ export default function DashboardPage() {
   const [timelineItems, setTimelineItems] = useState<any[]>([])
   const [albums, setAlbums] = useState<Album[]>([])
 
-  const router = useRouter()
-
   useEffect(() => {
     const fetchDashboardData = async () => {
       const supabase = createClient()
@@ -64,7 +61,6 @@ export default function DashboardPage() {
         const { data: { user: authUser }, error: authError } = await supabase.auth.getUser()
         if (authError) throw authError
         if (!authUser) {
-          router.push('/login')
           return
         }
 
@@ -131,7 +127,7 @@ export default function DashboardPage() {
     }
 
     fetchDashboardData()
-  }, [router])
+  }, [])
 
   if (isLoading) {
     return <Loader onComplete={() => setIsLoading(false)} />

@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ["latin"] })
 initEmailJS();
 
 export const metadata: Metadata = {
-  title: "MyPetLife - Preserve Your Pet's Precious Memories",
+  title: "MyPetLife - Preserve Your Pet&apos;s Precious Memories",
   description:
     "A beautiful and comforting space to save, view, and reflect on memories with your beloved pets. Organize your pet photos and create lasting memorials.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({

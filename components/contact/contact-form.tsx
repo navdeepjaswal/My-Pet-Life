@@ -78,7 +78,7 @@ export default function ContactForm() {
       );
 
       if (result.status === 200) {
-        toast.success("Message sent successfully! We'll get back to you soon.");
+        toast.success("Message sent successfully! We&apos;ll get back to you soon.");
         setFormData({
           name: "",
           email: "",
@@ -150,7 +150,7 @@ export default function ContactForm() {
               <Input
                 id="subject"
                 name="subject"
-                placeholder="What's this about?"
+                placeholder="What&apos;s this about?"
                 value={formData.subject}
                 onChange={handleChange}
                 className="border-2 border-rose-100 focus:border-rose-500"
