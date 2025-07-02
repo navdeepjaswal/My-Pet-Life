@@ -22,6 +22,7 @@ export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -42,15 +43,44 @@ export function SignUpForm({
       return;
     }
 
+    if (!name.trim()) {
+      setError("Name is required");
+      toast.error("Name is required");
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const { error } = await supabase.auth.signUp({
+      // 1. Sign up the user
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/auth/callback`,
+          data: {
+            name: name.trim(),
+          }
         },
       });
-      if (error) throw error;
+      if (authError) throw authError;
+
+      // 2. Create user profile if signup was successful
+      if (authData.user) {
+        const { error: profileError } = await supabase
+          .from('user_profiles')
+          .insert([
+            {
+              user_id: authData.user.id,
+              name: name.trim(),
+            }
+          ]);
+        
+        if (profileError) {
+          console.warn('Profile creation error:', profileError);
+          // Don't throw here as the user might be created during the auth callback
+        }
+      }
+
       toast.success("Check your email to confirm your account!");
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
@@ -71,6 +101,17 @@ export function SignUpForm({
         <CardContent>
           <form onSubmit={handleSignUp} className="space-y-6">
             <div className="flex flex-col gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Your full name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
