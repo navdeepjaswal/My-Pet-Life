@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { hasEnvVars } from "../utils";
 
-// Define public routes that don't require authentication
+// public routes
 const publicRoutes = ['/', '/about', '/contact', '/auth', '/login'];
 
 const isPublicRoute = (path: string) => {
@@ -14,7 +14,6 @@ export async function updateSession(request: NextRequest) {
     request,
   });
 
-  // If the env vars are not set, skip middleware check. You can remove this once you setup the project.
   if (!hasEnvVars) {
     return supabaseResponse;
   }

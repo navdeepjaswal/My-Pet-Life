@@ -77,7 +77,6 @@ export function SignUpForm({
         
         if (profileError) {
           console.warn('Profile creation error:', profileError);
-          // Don't throw here as the user might be created during the auth callback
         }
       }
 

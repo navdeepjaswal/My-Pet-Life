@@ -35,7 +35,7 @@ export default function AddMemoryModal({ userId, petId, onClose, onComplete }: A
     const files = Array.from(e.target.files || [])
     if (files.length === 0) return
 
-    // Limit to 5 images
+    // Limiting to max 5 images
     const limitedFiles = files.slice(0, 5)
     setSelectedFiles(limitedFiles)
 

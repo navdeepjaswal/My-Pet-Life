@@ -101,7 +101,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
           color: petData.color,
           weight: petData.weight,
           special_notes: petData.specialNotes,
-          avatar_url: '', // Will update this after upload
+          avatar_url: '',
           is_alive: true
         }])
         .select()

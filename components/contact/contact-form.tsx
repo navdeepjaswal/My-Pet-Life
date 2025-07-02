@@ -74,7 +74,7 @@ export default function ContactForm() {
           subject: formData.subject || 'Contact Form Submission',
           message: formData.message,
         },
-        'sZxiQ9AFEZLryUd6x' // Replace with your actual public key
+        'sZxiQ9AFEZLryUd6x'
       );
 
       if (result.status === 200) {
