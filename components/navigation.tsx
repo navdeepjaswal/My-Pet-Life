@@ -118,9 +118,9 @@ export default function Navigation() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent 
                     align="end" 
-                    alignOffset={-16}
+                    alignOffset={0}
                     sideOffset={8} 
-                    className="w-48 min-w-[12rem]"
+                    className="w-48 min-w-[12rem] max-w-[calc(100vw-2rem)]"
                   >
                     <DropdownMenuItem asChild>
                       <Link href="/" className="w-full">
@@ -178,9 +178,9 @@ export default function Navigation() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent 
                     align="end" 
-                    alignOffset={-16}
+                    alignOffset={0}
                     sideOffset={8} 
-                    className="w-48 min-w-[12rem]"
+                    className="w-48 min-w-[12rem] max-w-[calc(100vw-2rem)]"
                   >
                     <DropdownMenuItem asChild>
                       <Link href="/dashboard" className="w-full">
