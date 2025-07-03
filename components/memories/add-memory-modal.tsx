@@ -53,7 +53,7 @@ export default function AddMemoryModal({ userId, petId, onClose, onComplete }: A
       const fileExt = file.name.split('.').pop()
       const fileName = `${petId}/${Date.now()}-${i}.${fileExt}`
 
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('memories')
         .upload(fileName, file)
 
@@ -88,7 +88,7 @@ export default function AddMemoryModal({ userId, petId, onClose, onComplete }: A
       const imageUrls = await uploadImages()
 
       // 2. Create memories for each image
-      const memoryInserts = imageUrls.map((url, index) => ({
+      const memoryInserts = imageUrls.map(url => ({
         user_id: userId,
         pet_id: petId,
         title: memoryData.title,

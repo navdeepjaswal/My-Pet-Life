@@ -6,7 +6,7 @@ export default function HeroSection() {
           Contact <span className="text-rose-500">Us</span>
         </h1>
         <p className="text-xl text-gray-600 leading-relaxed">
-          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
         </p>
       </div>
     </section>

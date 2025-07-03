@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { GoogleButton } from "@/components/ui/google-button"
-import Navigation from "@/components/navigation"
 import Loader from "@/components/loader"
 import PawDecoration from "@/components/paw-decoration"
 import { Heart, Mail, Lock } from "lucide-react"
@@ -65,7 +64,7 @@ export default function SignInPage() {
               </div>
               <CardTitle className="text-2xl font-bold text-gray-800">Welcome Back</CardTitle>
               <CardDescription className="text-gray-600">
-                Sign in to continue preserving your pet's precious memories
+                Sign in to continue preserving your pet&apos;s precious memories
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -127,7 +126,7 @@ export default function SignInPage() {
 
                 <div className="text-center">
                   <p className="text-gray-600">
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <Link href="/signup" className="text-rose-500 hover:text-rose-600 font-medium">
                       Sign up
                     </Link>

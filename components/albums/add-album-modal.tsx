@@ -49,7 +49,7 @@ export default function AddAlbumModal({ userId, petId, onClose, onComplete }: Ad
       const fileExt = file.name.split('.').pop()
       const fileName = `${petId}/${Date.now()}-${i}.${fileExt}`
 
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('memories')
         .upload(fileName, file)
 

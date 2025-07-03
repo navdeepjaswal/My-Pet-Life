@@ -24,12 +24,12 @@ export default function StorySection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">It Started With Luna</h2>
           <p className="text-gray-600 mb-6 leading-relaxed">
             When our founder lost Luna, their beloved golden retriever of 12 years, they realized something
-            devastating: thousands of Luna's photos were scattered across old phones, forgotten in cloud storage,
+            devastating: thousands of Luna&apos;s photos were scattered across old phones, forgotten in cloud storage,
             and buried in camera rolls alongside random screenshots and memes.
           </p>
           <p className="text-gray-600 mb-6 leading-relaxed">
-            The most precious memories of Luna's puppyhood, her favorite spots in the park, her silly sleeping
-            positions, and her gentle eyes in her final days were lost in digital chaos. That's when the idea for
+            The most precious memories of Luna&apos;s puppyhood, her favorite spots in the park, her silly sleeping
+            positions, and her gentle eyes in her final days were lost in digital chaos. That&apos;s when the idea for
             MyPetLife was born.
           </p>
           <p className="text-gray-600 leading-relaxed">

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import PawDecoration from "./paw-decoration";
 
 export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [isVisible, setIsVisible] = useState(true);

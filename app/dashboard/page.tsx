@@ -5,7 +5,7 @@ import Image from "next/image"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Heart, Plus, Album, ArrowRight, Camera, Clock } from "lucide-react"
+import { Heart, Album, ArrowRight, Camera, Clock } from "lucide-react"
 import Loader from "@/components/loader"
 import PetOnboardingModal from "@/components/onboarding/pet-onboarding-modal"
 import AddMemoryModal from "@/components/memories/add-memory-modal"
@@ -30,6 +30,30 @@ interface Album {
   created_at: string
 }
 
+interface TimelineItem {
+  id: string
+  user_id: string
+  activity_type: string
+  activity_data: Record<string, unknown>
+  created_at: string
+  title: string
+  description?: string
+  image_url?: string
+}
+
+interface User {
+  id: string;
+  email?: string;
+}
+
+interface Pet {
+  id: string;
+  name: string;
+  breed?: string;
+  birth_date?: string;
+  user_id: string;
+}
+
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -45,11 +69,10 @@ export default function DashboardPage() {
   const [showAlbumModal, setShowAlbumModal] = useState(false)
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null)
-  const [user, setUser] = useState<any>(null)
-  const [pet, setPet] = useState<any>(null)
-  const [profile, setProfile] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
+  const [pet, setPet] = useState<Pet | null>(null)
   const [recentMemories, setRecentMemories] = useState<Memory[]>([])
-  const [timelineItems, setTimelineItems] = useState<any[]>([])
+  const [timelineItems, setTimelineItems] = useState<TimelineItem[]>([])
   const [albums, setAlbums] = useState<Album[]>([])
 
   useEffect(() => {
@@ -65,15 +88,6 @@ export default function DashboardPage() {
         }
 
         setUser(authUser)
-
-        // Fetch user profile
-        const { data: profileData } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', authUser.id)
-          .single()
-
-        setProfile(profileData)
 
         // Fetch user's pet
         const { data: petData } = await supabase
@@ -135,9 +149,9 @@ export default function DashboardPage() {
 
   return (
     <>
-      {showOnboarding && (
+      {showOnboarding && user && (
         <PetOnboardingModal
-          userId={user?.id}
+          userId={user.id}
           onComplete={() => {
             setShowOnboarding(false)
             window.location.reload()

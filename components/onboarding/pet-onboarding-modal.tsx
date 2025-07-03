@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Heart, Upload, Camera, Check } from "lucide-react"
+import { Heart, Upload, Check } from "lucide-react"
 import Image from "next/image"
 import { toast } from "sonner"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -62,7 +62,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
       const fileExt = file.name.split('.').pop()
       const fileName = `${petId}/${Date.now()}-${i}.${fileExt}`
 
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('memories')
         .upload(fileName, file)
 
@@ -125,7 +125,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
           user_id: userId,
           pet_id: pet.id,
           name: "First Upload",
-          description: `${petData.name}'s first photos!`,
+          description: `${petData.name}&apos;s first photos!`,
           cover_image_url: imageUrls[selectedAvatarIndex]
         }])
         .select()
@@ -137,8 +137,8 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
       const memoryInserts = imageUrls.map((url, index) => ({
         user_id: userId,
         pet_id: pet.id,
-        title: index === selectedAvatarIndex ? `Welcome ${petData.name}!` : `${petData.name}'s Photo ${index + 1}`,
-        caption: index === selectedAvatarIndex ? `${petData.name}'s first photo on MyPetLife!` : `Another precious moment with ${petData.name}`,
+        title: index === selectedAvatarIndex ? `Welcome ${petData.name}!` : `${petData.name}&apos;s Photo ${index + 1}`,
+        caption: index === selectedAvatarIndex ? `${petData.name}&apos;s first photo on MyPetLife!` : `Another precious moment with ${petData.name}`,
         image_url: url,
         memory_date: new Date().toISOString().split('T')[0]
       }))
@@ -167,7 +167,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
           pet_id: pet.id,
           activity_type: 'memory',
           title: `Welcome ${petData.name}!`,
-          description: `Added ${petData.name}'s first photos`,
+          description: `Added ${petData.name}&apos;s first photos`,
           related_id: memories[selectedAvatarIndex].id,
           image_url: imageUrls[selectedAvatarIndex]
         },
@@ -208,7 +208,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
             Welcome to MyPetLife! 🐾
           </CardTitle>
           <CardDescription>
-            Let's start by adding your beloved companion
+            Let&apos;s start by adding your beloved companion
           </CardDescription>
         </CardHeader>
 
@@ -220,7 +220,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="flex items-center">
-                    Pet's Name <span className="text-red-500 ml-1">*</span>
+                    Pet&apos;s Name <span className="text-red-500 ml-1">*</span>
                   </Label>
                   <Input
                     id="name"
@@ -405,7 +405,7 @@ export default function PetOnboardingModal({ userId, onComplete }: PetOnboarding
                       ))}
                     </div>
                     <p className="text-sm text-gray-500">
-                      Selected: Photo {selectedAvatarIndex + 1} will be used as {petData.name}'s profile picture
+                      Selected: Photo {selectedAvatarIndex + 1} will be used as {petData.name}&apos;s profile picture
                     </p>
                   </div>
                 </div>

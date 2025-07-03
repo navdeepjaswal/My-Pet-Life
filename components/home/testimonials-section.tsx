@@ -24,9 +24,9 @@ export default function TestimonialsSection() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "Finally, all of Bella's photos are organized and safe. This
+              &quot;Finally, all of Bella&apos;s photos are organized and safe. This
               app helped me create the most beautiful memorial for my sweet
-              girl."
+              girl.&quot;
             </p>
           </CardContent>
         </Card>
@@ -44,9 +44,9 @@ export default function TestimonialsSection() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "I used to lose Max's photos in my camera roll. Now I have a
+              &quot;I used to lose Max&apos;s photos in my camera roll. Now I have a
               beautiful timeline of his entire life. Absolutely love this
-              platform."
+              platform.&quot;
             </p>
           </CardContent>
         </Card>
@@ -64,9 +64,9 @@ export default function TestimonialsSection() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "The most thoughtful app for pet parents. It's not just
-              storage - it's a celebration of the love we share with our
-              pets."
+              &quot;The most thoughtful app for pet parents. It&apos;s not just
+              storage - it&apos;s a celebration of the love we share with our
+              pets.&quot;
             </p>
           </CardContent>
         </Card>

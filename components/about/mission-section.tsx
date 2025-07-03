@@ -34,7 +34,7 @@ export default function MissionSection() {
             <h3 className="text-2xl font-semibold text-white mb-4">Memories</h3>
             <p className="text-white text-sm">
               Preserving precious moments in beautiful, organized collections
-              that tell your pet's story.
+              that tell your pet&apos;s story.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export default function MissionSection() {
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Our small but passionate team understands the unique joy and
-          heartbreak that comes with loving a pet. We're here to help you
+          heartbreak that comes with loving a pet. We&apos;re here to help you
           celebrate that love.
         </p>
       </div>

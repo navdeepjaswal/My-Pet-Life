@@ -57,7 +57,7 @@ export default function AboutPreviewSection() {
           </p>
           <p className="text-gray-600 mb-8 leading-relaxed">
             We believe every pet deserves to be remembered, celebrated, and
-            honored. Whether they're still by your side or living on in your
+            honored. Whether they&apos;re still by your side or living on in your
             heart, their story matters.
           </p>
           <Link href="/about">

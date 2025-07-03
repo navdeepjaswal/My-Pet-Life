@@ -33,7 +33,7 @@ export default function AlbumView({ albumId, isOpen, onClose }: AlbumViewProps) 
       const supabase = createClient()
       
       try {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from('album_memories')
           .select(`
             memory_id,

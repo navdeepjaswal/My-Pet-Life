@@ -30,7 +30,7 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
-          Preserve Your Pet's{" "}
+          Preserve Your Pet&apos;s{" "}
           <span className="text-rose-500">Precious Memories</span>
         </h1>
 

@@ -40,7 +40,7 @@ export default function SupportHours() {
               <p>We understand how precious your pet memories are to you.</p>
               <p>Our dedicated support team consists of fellow pet parents who genuinely care about your experience.</p>
               <p className="text-sm italic">
-                "Every pet parent deserves compassionate support when preserving their most treasured memories."
+                &quot;Every pet parent deserves compassionate support when preserving their most treasured memories.&quot;
               </p>
             </div>
           </div>

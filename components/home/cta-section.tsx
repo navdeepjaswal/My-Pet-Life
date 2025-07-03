@@ -27,7 +27,7 @@ export default function CTASection() {
             size="lg"
             className="bg-white text-rose-500 hover:bg-gray-100 rounded-full px-8 py-3 text-lg font-semibold"
           >
-            Create Your Pet's Story
+            Create Your Pet&apos;s Story
           </Button>
         </Link>
       </div>
