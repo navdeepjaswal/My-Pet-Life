@@ -1,35 +1,37 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import PawDecoration from "@/components/paw-decoration";
 
 export default function CTASection() {
   return (
-    <section className="container mx-auto px-4 py-16">
-      <div className="bg-gradient-to-r from-rose-500 to-pink-500 rounded-3xl p-12 text-center text-white max-w-4xl mx-auto relative overflow-hidden">
-        <PawDecoration
-          className="absolute top-4 left-4 text-white/20"
-          size="w-16 h-16"
-        />
-        <PawDecoration
-          className="absolute bottom-4 right-4 text-white/20"
-          size="w-12 h-12"
-        />
-
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Start Preserving Memories Today
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div className="text-center max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
+          Start Preserving Your Pet&apos;s Memories Today
         </h2>
-        <p className="text-xl mb-8 opacity-90">
-          Join thousands of pet parents who trust MyPetLife with their most
-          precious memories.
+        <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+          Join thousands of pet parents who trust MyPetLife to keep their most
+          precious memories safe, organized, and beautifully displayed.
         </p>
-        <Link href="/signup">
-          <Button
-            size="lg"
-            className="bg-white text-rose-500 hover:bg-gray-100 rounded-full px-8 py-3 text-lg font-semibold"
-          >
-            Create Your Pet&apos;s Story
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/signup">
+            <Button
+              size="lg"
+              className="bg-rose-500 hover:bg-rose-600 text-white rounded-full px-6 sm:px-8 py-3 text-base sm:text-lg w-full sm:w-auto"
+            >
+              <span className="block sm:hidden">Get Started Free</span>
+              <span className="hidden sm:block">Get Started Free</span>
+            </Button>
+          </Link>
+          <Link href="/contact">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-rose-300 text-rose-600 hover:bg-rose-50 rounded-full px-6 sm:px-8 py-3 text-base sm:text-lg w-full sm:w-auto"
+            >
+              Contact Us
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
