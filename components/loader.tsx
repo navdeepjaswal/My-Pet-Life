@@ -19,7 +19,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
         }
         return prev + 2;
       });
-    }, 26); // 1300ms / 50 steps = 26ms per step
+    }, 26); 
 
     // Loading text animation
     const textInterval = setInterval(() => {
@@ -104,7 +104,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             {loadingText}
           </p>
           <p className="text-rose-400 text-sm mt-1 animate-fade-in-up">
-            Preparing your pet's world...
+            Preparing your pet&apos;s world...
           </p>
         </div>
 
